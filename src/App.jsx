@@ -1,52 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-import Loading from "./components/loading.jsx"; // Uncommented import
+import ErrorBoundary from "./components/ErrorBoundary";
 import './assets';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const App = () => {
-  
   const footerRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [webglAvailable, setWebglAvailable] = useState(true); // ADDED: WebGL check state
 
-  
   useEffect(() => {
-    // ADDED: Check WebGL availability first
-    const checkWebGL = () => {
-      try {
-        const canvas = document.createElement('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-        setWebglAvailable(!!gl);
-      } catch (e) {
-        setWebglAvailable(false);
-      }
-    };
-    
-    checkWebGL();
-
-    // Simulate loading time for assets
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Reduced to 2 seconds for better UX
-
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    // Observe all sections
-    document.querySelectorAll('section, div[class*="relative"]').forEach((el) => {
-      observer.observe(el);
-    });
-
     // Add CSS animations for particles
     const style = document.createElement('style');
     style.textContent = `
@@ -58,80 +19,24 @@ const App = () => {
         0%, 100% { opacity: 0.3; }
         50% { opacity: 1; }
       }
-      .animate-in {
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
     `;
     document.head.appendChild(style);
 
     return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-      document.head.removeChild(style);
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
     };
   }, []);
 
-  // Show loading screen
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  // ADDED: Show fallback if WebGL is not available
-  if (!webglAvailable) {
-    return (
-      <div style={{
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'black',
-        color: 'white',
-        textAlign: 'center',
-        padding: '20px',
-        flexDirection: 'column'
-      }}>
-        <div style={{ marginBottom: '30px' }}>
-          <h1 style={{ color: '#00BFFF', fontSize: '28px', marginBottom: '15px' }}>⚠️ WebGL Not Supported</h1>
-          <p style={{ color: '#ccc', marginBottom: '10px' }}>
-            Your device or browser doesn't support WebGL, which is required for 3D graphics.
-          </p>
-          <p style={{ color: '#999', fontSize: '14px' }}>
-            Try updating your browser to the latest version or using a different device.
-          </p>
-        </div>
-        <div style={{
-          background: 'rgba(0, 191, 255, 0.1)',
-          padding: '15px',
-          borderRadius: '10px',
-          border: '1px solid rgba(0, 191, 255, 0.3)',
-          marginTop: '20px'
-        }}>
-          <p style={{ color: '#00BFFF', fontSize: '14px' }}>
-            <strong>Quick fixes:</strong> Update Chrome/Firefox/Safari, enable hardware acceleration, or try on a different device
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <BrowserRouter>
-      {/* Deep black space background */}
-      <div className='relative z-0 bg-black'>
-        
-        {/* Fixed space background */}
-        <div className="fixed inset-0 overflow-hidden bg-black z-0">
+    <ErrorBoundary>
+      <BrowserRouter>
+        {/* Deep black space background */}
+        <div className='relative z-0 bg-black min-h-screen text-white'>
+          
+          {/* Fixed space background */}
+          <div className="fixed inset-0 overflow-hidden bg-black z-0 pointer-events-none">
           
           {/* Base star layers */}
           <div className="absolute inset-0">
@@ -507,6 +412,7 @@ const App = () => {
         </div>
       </div>
     </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

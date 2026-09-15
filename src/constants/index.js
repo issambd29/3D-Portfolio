@@ -24,6 +24,9 @@ import {
   jobit,
   tripguide,
   threejs,
+  postgresql,
+  django,
+  ai,
 } from "../assets";
 import python from "../assets/tech/python.png";
 
@@ -34,7 +37,11 @@ export const navLinks = [
   },
   {
     id: "work",
-    title: "Work",
+    title: "Experience",
+  },
+  {
+    id: "projects",
+    title: "Projects",
   },
   {
     id: "contact",
@@ -69,6 +76,18 @@ const technologies = [
   {
     name: "Python",
     icon: python,
+  },
+  {
+    name: "Django",
+    icon: django,
+  },
+  {
+    name: "PostgreSQL",
+    icon: postgresql,
+  },
+  {
+    name: "AI",
+    icon: ai,
   },
   {
     name: "CSS 3",
@@ -206,29 +225,29 @@ const testimonials = [
 const projects = [
   // HTML/CSS/JS Projects
   {
-    name: "DineTech Restaurant",
-    description: "Modern restaurant website with menu showcase, reservation system, and online ordering functionality.",
+    name: "DineTech Store",
+    description: "DineTech: Discover the latest devices and electronics at the best prices. Modern e-commerce platform with catalog browsing, shopping cart, and guest checkout.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "css", color: "blue-text-gradient" },
       { name: "javascript", color: "blue-text-gradient" },
-      { name: "responsive", color: "blue-text-gradient" },
+      { name: "ecommerce", color: "blue-text-gradient" },
       { name: "firebase", color: "blue-text-gradient" },
     ],
-    image: null, // You can add actual images
+    image: null,
     source_code_link: "https://github.com/issambd29/dinetech",
     live_demo_link: "https://dinetech-f7b0e.web.app",
     type: "html-css-js"
   },
   {
     name: "Thawra 1954",
-    description: "Historical website about the Algerian revolution with interactive timeline and multimedia content.",
+    description: "Algerian Liberation Revolution article management system (نظام إدارة مقالات ثورة التحرير الجزائرية) with Firebase authentication and historical documentation.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "css", color: "blue-text-gradient" },
       { name: "javascript", color: "blue-text-gradient" },
-      { name: "animation", color: "blue-text-gradient" },
-      { name: "timeline", color: "blue-text-gradient" },
+      { name: "firebase", color: "blue-text-gradient" },
+      { name: "history", color: "blue-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/thawra-1954",
@@ -237,7 +256,7 @@ const projects = [
   },
   {
     name: "Rights & Duties",
-    description: "Educational website explaining human rights and civic duties with interactive quizzes and resources.",
+    description: "Official 2AS Mathematics Classroom Charter promoting respect, responsibility, and teamwork through students' rights, duties, and an interactive quiz.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "css", color: "blue-text-gradient" },
@@ -252,13 +271,13 @@ const projects = [
   },
   {
     name: "Personal Portfolio",
-    description: "My first portfolio website showcasing early projects and skills with clean, responsive design.",
+    description: "Portfolio of Issam Badaoui — Creative Front-End Developer, UI/UX Designer, and 3D Designer from Algeria, featuring modern responsive design and 3D interactions.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "css", color: "blue-text-gradient" },
       { name: "javascript", color: "blue-text-gradient" },
+      { name: "spline-3d", color: "blue-text-gradient" },
       { name: "portfolio", color: "blue-text-gradient" },
-      { name: "responsive", color: "blue-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/portfolio-html",
@@ -269,13 +288,13 @@ const projects = [
   // React Projects
   {
     name: "Wysi Recycling",
-    description: "Environmental platform for recycling management with location tracking and impact analytics.",
+    description: "Smart environmental recycling platform featuring AI-based waste recognition, IoT collection monitoring, automated sorting, analytics, and FastBots AI.",
     tags: [
       { name: "react", color: "cyan-text-gradient" },
+      { name: "ai", color: "cyan-text-gradient" },
       { name: "firebase", color: "cyan-text-gradient" },
       { name: "tailwind", color: "cyan-text-gradient" },
-      { name: "maps", color: "cyan-text-gradient" },
-      { name: "environment", color: "cyan-text-gradient" },
+      { name: "iot", color: "cyan-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/wysi-recycling",
@@ -283,14 +302,14 @@ const projects = [
     type: "react"
   },
   {
-    name: "Arabic Learning Platform",
-    description: "Interactive platform for learning Arabic language with lessons, quizzes, and pronunciation guides.",
+    name: "Abbasid Era Figures",
+    description: "Cultural and educational platform (أعلام العصر العباسي: رحلة في أعماق التراث) documenting historical scholars, scientists, poets, and interactive timelines.",
     tags: [
       { name: "react", color: "cyan-text-gradient" },
-      { name: "nodejs", color: "cyan-text-gradient" },
-      { name: "mongodb", color: "cyan-text-gradient" },
+      { name: "tailwind", color: "cyan-text-gradient" },
+      { name: "history", color: "cyan-text-gradient" },
       { name: "education", color: "cyan-text-gradient" },
-      { name: "authentication", color: "cyan-text-gradient" },
+      { name: "timeline", color: "cyan-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/arabic-platform",
@@ -299,30 +318,30 @@ const projects = [
   },
   {
     name: "Quiz BD App",
-    description: "Quiz application with multiple categories, leaderboards, and real-time scoring system.",
+    description: "Interactive quiz platform featuring user authentication, category exploration, custom quiz creation and editing, timed test sessions, and instant score results.",
     tags: [
-      { name: "react", color: "cyan-text-gradient" },
-      { name: "firebase", color: "cyan-text-gradient" },
+      { name: "vue", color: "cyan-text-gradient" },
+      { name: "api", color: "cyan-text-gradient" },
       { name: "quiz", color: "cyan-text-gradient" },
       { name: "gamification", color: "cyan-text-gradient" },
       { name: "real-time", color: "cyan-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/quiz-bd",
-    live_demo_link: "https://quiz-bd-app.web.app",
+    live_demo_link: "https://quiz-bd.vercel.app",
     type: "react"
   },
 
   // React Native Projects
   {
     name: "Abbasid Scholars",
-    description: "Mobile app showcasing Islamic scholars from the Abbasid era with biographies and contributions.",
+    description: "Cross-platform mobile application built with React Native and Expo, bringing Abbasid scholars' biographies, achievements, and timelines to mobile devices.",
     tags: [
       { name: "react-native", color: "purple-text-gradient" },
       { name: "expo", color: "purple-text-gradient" },
+      { name: "mobile", color: "purple-text-gradient" },
       { name: "education", color: "purple-text-gradient" },
       { name: "history", color: "purple-text-gradient" },
-      { name: "mobile", color: "purple-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/abbasid-scholars",

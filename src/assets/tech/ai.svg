@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#090D1C"/>
+    </linearGradient>
+    <linearGradient id="aiGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00BFFF"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <filter id="aiShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00BFFF" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Circular background -->
+  <circle cx="128" cy="128" r="116" fill="url(#aiBg)" stroke="#00BFFF" stroke-width="4" filter="url(#aiShadow)"/>
+
+  <!-- CPU / Neural Circuit Tracks -->
+  <!-- Top Pins -->
+  <line x1="108" y1="44" x2="108" y2="68" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="128" y1="40" x2="128" y2="68" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="148" y1="44" x2="148" y2="68" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Bottom Pins -->
+  <line x1="108" y1="188" x2="108" y2="212" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="128" y1="188" x2="128" y2="216" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="148" y1="188" x2="148" y2="212" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Left Pins -->
+  <line x1="44" y1="108" x2="68" y2="108" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="40" y1="128" x2="68" y2="128" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="44" y1="148" x2="68" y2="148" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Right Pins -->
+  <line x1="188" y1="108" x2="212" y2="108" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="188" y1="128" x2="216" y2="128" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+  <line x1="188" y1="148" x2="212" y2="148" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Main Chip Body -->
+  <rect x="68" y="68" width="120" height="120" rx="20" fill="#111B33" stroke="url(#aiGlow)" stroke-width="3.5"/>
+
+  <!-- Neural Nodes & Circuit Lines inside Chip -->
+  <circle cx="88" cy="88" r="4" fill="#00BFFF"/>
+  <circle cx="168" cy="88" r="4" fill="#00BFFF"/>
+  <circle cx="88" cy="168" r="4" fill="#00BFFF"/>
+  <circle cx="168" cy="168" r="4" fill="#00BFFF"/>
+  
+  <line x1="88" y1="88" x2="102" y2="102" stroke="#00BFFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="168" y1="88" x2="154" y2="102" stroke="#00BFFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="88" y1="168" x2="102" y2="154" stroke="#00BFFF" stroke-width="1.5" opacity="0.6"/>
+  <line x1="168" y1="168" x2="154" y2="154" stroke="#00BFFF" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- AI Text -->
+  <text x="128" y="140" text-anchor="middle" font-family="'Poppins', 'Arial Black', sans-serif" font-size="44" font-weight="900" fill="url(#aiGlow)" letter-spacing="2">AI</text>
+  <text x="128" y="162" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="10" font-weight="600" fill="#94A3B8" letter-spacing="3">INTELLIGENCE</text>
+</svg>

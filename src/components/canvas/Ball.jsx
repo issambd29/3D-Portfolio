@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Decal,
@@ -9,6 +9,13 @@ import {
 } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
+import ErrorBoundary from "../ErrorBoundary";
+
+const BallFallback = ({ icon }) => (
+  <div className="w-full h-full rounded-full bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-700 p-2.5 flex items-center justify-center border-2 border-[#00BFFF]/40 shadow-[0_0_20px_rgba(0,191,255,0.25)] hover:scale-110 hover:border-[#00BFFF] transition-all duration-300">
+    <img src={icon} alt="tech" className="w-3/5 h-3/5 object-contain drop-shadow-md" />
+  </div>
+);
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
@@ -37,30 +44,41 @@ const Ball = (props) => {
   );
 };
 
-const BallCanvas = ({ icon }) => {
-  // Check if mobile
-  const isMobile = window.innerWidth <= 768;
-
+const SafeCanvas = ({ icon, isMobile }) => {
   return (
     <Canvas
       frameloop='demand'
-      dpr={isMobile ? 1 : [1, 2]}  // FIX: Lower DPR on mobile
+      dpr={isMobile ? 1 : [1, 2]}
       gl={{ 
         preserveDrawingBuffer: true,
-        antialias: !isMobile,  // FIX: Disable antialias on mobile
+        antialias: !isMobile,
         powerPreference: 'default'
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls 
           enableZoom={false}
-          enablePan={!isMobile}  // FIX: Disable panning on mobile
+          enablePan={!isMobile}
         />
         <Ball imgUrl={icon} />
       </Suspense>
 
       <Preload all />
     </Canvas>
+  );
+};
+
+const BallCanvas = ({ icon }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  return (
+    <ErrorBoundary fallback={<BallFallback icon={icon} />}>
+      <SafeCanvas icon={icon} isMobile={isMobile} />
+    </ErrorBoundary>
   );
 };
 

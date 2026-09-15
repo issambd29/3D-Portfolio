@@ -27,7 +27,8 @@ const About = () => {
   ];
 
   return (
-    <section className="relative w-full py-24">
+    <section id="about" className="relative w-full py-24">
+      <span className="hash-span" id="about">&nbsp;</span>
       {/* Main content container */}
       <div className={`max-w-7xl mx-auto ${styles.paddingX}`}>
         

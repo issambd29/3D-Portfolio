@@ -591,17 +591,17 @@ const Contact = () => {
       const sanitizedMessage = DOMPurify.sanitize(form.message);
       
       // Send email
-await emailjs.send(
-  "service_au4rreb",
-  "template_fenoxrf",
-  {
-    from_name: form.name.trim(),
-    reply_to: form.email.trim(),   // 🔴 هذا هو المفتاح السحري
-    message: sanitizedMessage,
-    timestamp: new Date().toLocaleString(),
-  },
-  "j027nEI_A_h6_5Avk"
-);
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_au4rreb",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_fenoxrf",
+        {
+          from_name: form.name.trim(),
+          reply_to: form.email.trim(),
+          message: sanitizedMessage,
+          timestamp: new Date().toLocaleString(),
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "j027nEI_A_h6_5Avk"
+      );
 
       
       // Success

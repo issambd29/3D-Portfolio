@@ -171,7 +171,7 @@ const Experience = () => {
         className='mt-10 flex flex-col'
       >
         {/* Custom timeline line styling */}
-        <style jsx global>{`
+        <style>{`
           .vertical-timeline::before {
             background: linear-gradient(to bottom, #00BFFF, transparent) !important;
             width: 3px !important;

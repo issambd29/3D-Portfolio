@@ -1,0 +1,6 @@
+{
+  "name": "Issam | 3D Portfolio",
+  "description": "3D developer portfolio showcasing interactive Three.js models, skills, experience timeline, and project showcase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
