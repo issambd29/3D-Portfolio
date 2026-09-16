@@ -1,6 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { SocialIconsBar } from "./components/SocialLinks";
+import { Mail, Code2, Sparkles } from "lucide-react";
 import './assets';
 import { useEffect, useRef } from "react";
 
@@ -269,33 +271,33 @@ const App = () => {
                 <div className="space-y-4">
                   <h4 className="text-white font-bold text-lg flex items-center gap-3">
                     <div className="w-6 h-px bg-gradient-to-r from-cyan-500 to-blue-500" />
-                    Contact
+                    Direct Contact
                   </h4>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <a
                       href="mailto:badaouiissam660@gmail.com"
-                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 p-3 hover:bg-gray-900/30 rounded-xl"
+                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 p-2.5 hover:bg-gray-900/40 rounded-xl border border-transparent hover:border-[#00BFFF]/20"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00BFFF]/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <span className="text-lg">✉️</span>
+                      <div className="w-9 h-9 rounded-lg bg-[#00BFFF]/10 border border-[#00BFFF]/20 flex items-center justify-center group-hover:scale-105 transition-transform text-[#00BFFF]">
+                        <Mail className="w-4 h-4" />
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-400">Email</p>
-                        <p className="text-white">badaouiissam660@gmail.com</p>
+                      <div className="min-w-0">
+                        <p className="text-xs text-gray-400">Email Address</p>
+                        <p className="text-white text-xs sm:text-sm font-medium truncate">badaouiissam660@gmail.com</p>
                       </div>
                     </a>
                     <a
                       href="https://github.com/issambd29"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 p-3 hover:bg-gray-900/30 rounded-xl"
+                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 p-2.5 hover:bg-gray-900/40 rounded-xl border border-transparent hover:border-[#00BFFF]/20"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00BFFF]/10 to-cyan-500/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <span className="text-lg">💻</span>
+                      <div className="w-9 h-9 rounded-lg bg-[#00BFFF]/10 border border-[#00BFFF]/20 flex items-center justify-center group-hover:scale-105 transition-transform text-[#00BFFF]">
+                        <Code2 className="w-4 h-4" />
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-400">GitHub</p>
-                        <p className="text-white">@issambd29</p>
+                      <div className="min-w-0">
+                        <p className="text-xs text-gray-400">GitHub Profile</p>
+                        <p className="text-white text-xs sm:text-sm font-medium">@issambd29</p>
                       </div>
                     </a>
                   </div>
@@ -305,13 +307,13 @@ const App = () => {
                 <div className="space-y-4">
                   <h4 className="text-white font-bold text-lg flex items-center gap-3">
                     <div className="w-6 h-px bg-gradient-to-r from-blue-500 to-purple-500" />
-                    Built With
+                    Production Stack
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['React', 'Tailwind', 'Three.js', 'Framer', 'Vite'].map((tech) => (
+                    {['React', 'Tailwind CSS', 'Django', 'PostgreSQL', 'Three.js', 'Firebase', 'Vite'].map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-2 bg-gradient-to-r from-gray-900/50 to-gray-800/50 text-gray-300 text-sm rounded-lg border border-gray-700/50 hover:border-[#00BFFF]/30 hover:text-white transition-all duration-300"
+                        className="px-2.5 py-1.5 bg-gradient-to-r from-gray-900/60 to-gray-800/60 text-gray-300 text-xs font-mono rounded-lg border border-white/10 hover:border-[#00BFFF]/40 hover:text-white transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -321,7 +323,7 @@ const App = () => {
               </div>
 
               {/* Divider with orbit animation */}
-              <div className="relative my-12">
+              <div className="relative my-10">
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent" />
                 <div className="absolute left-1/2 -translate-x-1/2 -top-3">
                   <div className="relative w-6 h-6">
@@ -331,53 +333,32 @@ const App = () => {
                 </div>
               </div>
 
-              {/* Bottom section */}
-              <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+              {/* Bottom section with upgraded social icons bar */}
+              <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
                 {/* Copyright */}
                 <div className="text-center lg:text-left">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse delay-150" />
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse delay-300" />
-                    </div>
-                    <span className="text-green-400 text-sm font-mono">PORTFOLIO_ACTIVE</span>
+                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                    <span className="text-emerald-400 text-xs font-mono uppercase tracking-wider">AVAILABLE_FOR_NEW_PROJECTS</span>
                   </div>
-                  <p className="text-gray-400">
-                    © {new Date().getFullYear()} Badaoui Issam Eddine 
-                    <span className="text-gray-500 mx-2">•</span>
-                    All rights reserved
+                  <p className="text-gray-400 text-sm">
+                    © {new Date().getFullYear()} Badaoui Issam Eddine
+                    <span className="text-gray-600 mx-2">•</span>
+                    Software Engineer &amp; 3D Designer
                   </p>
                 </div>
 
-                {/* Social links */}
-                <div className="flex items-center gap-3">
-                  {[
-                    { name: 'GitHub', icon: '💻', url: 'https://github.com/issambd29' },
-                    { name: 'LinkedIn', icon: '💼', url: '#' },
-                    { name: 'Twitter', icon: '🐦', url: '#' },
-                    { name: 'Instagram', icon: '📸', url: '#' },
-                    { name: 'WhatsApp', icon: '💬', url: '#' },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#00BFFF]/50 hover:scale-110 hover:shadow-lg hover:shadow-[#00BFFF]/10 transition-all duration-300 group"
-                      title={social.name}
-                    >
-                      <span className="text-lg group-hover:scale-110 transition-transform">{social.icon}</span>
-                    </a>
-                  ))}
+                {/* Upgraded Official Social Icons: GitHub, LinkedIn, Instagram, WhatsApp */}
+                <div className="flex flex-col items-center lg:items-end gap-2">
+                  <SocialIconsBar />
                 </div>
 
                 {/* CTA */}
                 <a
                   href="#contact"
-                  className="group px-6 py-3 bg-gradient-to-r from-[#00BFFF]/10 to-cyan-500/10 border border-[#00BFFF]/30 text-[#00BFFF] rounded-full hover:from-[#00BFFF]/20 hover:to-cyan-500/20 hover:border-[#00BFFF] hover:shadow-lg hover:shadow-[#00BFFF]/20 transition-all duration-300 flex items-center gap-2"
+                  className="group px-6 py-2.5 bg-gradient-to-r from-[#00BFFF]/15 to-cyan-500/15 border border-[#00BFFF]/40 text-[#00BFFF] rounded-full hover:from-[#00BFFF]/30 hover:to-cyan-500/30 hover:border-[#00BFFF] hover:shadow-[0_0_20px_rgba(0,191,255,0.3)] transition-all duration-300 flex items-center gap-2 text-sm font-medium"
                 >
-                  <span>Let&apos;s Connect</span>
+                  <span>Start a Conversation</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </div>
@@ -385,27 +366,19 @@ const App = () => {
               {/* Back to top button */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-[#00BFFF] to-cyan-500 flex items-center justify-center text-white shadow-2xl hover:scale-110 hover:shadow-[#00BFFF]/40 transition-all duration-300 z-50 group"
+                className="fixed bottom-8 right-8 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#00BFFF] to-cyan-500 flex items-center justify-center text-black font-bold shadow-2xl hover:scale-110 hover:shadow-[0_0_25px_#00BFFF] transition-all duration-300 z-50 group"
                 aria-label="Back to top"
               >
-                <span className="group-hover:-translate-y-1 transition-transform">↑</span>
+                <span className="group-hover:-translate-y-0.5 transition-transform text-lg">↑</span>
               </button>
 
               {/* Footer note */}
-              <div className="mt-10 pt-8 border-t border-gray-800/30 text-center">
-                <p className="text-gray-500 text-sm">
-                  Made using React & Tailwind CSS
-                  <span className="text-gray-600 mx-2">•</span>
-                  Optimized for performance
-                  <span className="text-gray-600 mx-2">•</span>
-                  Updated daily
+              <div className="mt-10 pt-6 border-t border-gray-800/30 text-center">
+                <p className="text-gray-500 text-xs font-mono">
+                  Engineered with React, Three.js &amp; Tailwind CSS
+                  <span className="text-gray-700 mx-2">•</span>
+                  Enterprise Grade Architecture
                 </p>
-                <div className="mt-4 flex items-center justify-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse" />
-                  <span className="text-yellow-500/70 text-xs font-mono">
-                    Last deployment: {new Date().toLocaleDateString()}
-                  </span>
-                </div>
               </div>
             </div>
           </footer>

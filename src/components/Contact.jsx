@@ -6,6 +6,7 @@ import { Send, Mail, MapPin, Clock, User, MessageSquare, Globe, Cpu, Wifi, WifiO
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
+import { SocialCardsGrid } from "./SocialLinks";
 
 // Toast Notification Component
 const Toast = ({ message, type, onClose, id }) => {
@@ -372,16 +373,18 @@ const Contact = () => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
   };
 
-  const validateField = (name, value) => {
+  const validateField = (name, rawValue) => {
     const newErrors = { ...errors };
     const validation = { ...fieldValidation };
+    const value = rawValue == null ? "" : String(rawValue);
+    const trimmed = value.trim();
 
     switch (name) {
       case "name":
-        if (!value.trim()) {
+        if (!trimmed) {
           newErrors.name = "Name is required";
           validation.name = { type: "error", message: "Please enter your name" };
-        } else if (value.trim().length < 2) {
+        } else if (trimmed.length < 2) {
           newErrors.name = "Name must be at least 2 characters";
           validation.name = { type: "warning", message: "Name should be at least 2 characters" };
         } else if (value.length > 50) {
@@ -394,7 +397,7 @@ const Contact = () => {
         break;
 
       case "email":
-        if (!value.trim()) {
+        if (!trimmed) {
           newErrors.email = "Email is required";
           validation.email = { type: "error", message: "Please enter your email address" };
         } else if (!/\S+@\S+\.\S+/.test(value)) {
@@ -410,10 +413,10 @@ const Contact = () => {
         break;
 
       case "message":
-        if (!value.trim()) {
+        if (!trimmed) {
           newErrors.message = "Message is required";
           validation.message = { type: "error", message: "Please enter your message" };
-        } else if (value.trim().length < 10) {
+        } else if (trimmed.length < 10) {
           newErrors.message = "Message must be at least 10 characters";
           validation.message = { type: "warning", message: "Message should be more detailed (min. 10 characters)" };
         } else if (value.length > 500) {
@@ -588,15 +591,15 @@ const Contact = () => {
       await simulateSubmitStages();
       
       // Sanitize input
-      const sanitizedMessage = DOMPurify.sanitize(form.message);
+      const sanitizedMessage = DOMPurify.sanitize(form.message || "");
       
       // Send email
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_au4rreb",
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_fenoxrf",
         {
-          from_name: form.name.trim(),
-          reply_to: form.email.trim(),
+          from_name: (form.name || "").trim(),
+          reply_to: (form.email || "").trim(),
           message: sanitizedMessage,
           timestamp: new Date().toLocaleString(),
         },
@@ -1016,9 +1019,20 @@ const Contact = () => {
                           </div>
                           <div>
                             <p className="text-white text-sm font-semibold">Response Time</p>
-                            <p className="text-gray-400 text-xs">24-48 hours</p>
+                            <p className="text-gray-400 text-xs">Within 24 hours</p>
                           </div>
                         </div>
+                      </div>
+
+                      {/* Direct Channels: GitHub, LinkedIn, Instagram, WhatsApp */}
+                      <div className="mt-6 pt-6 border-t border-white/10">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="w-2 h-2 rounded-full bg-[#00BFFF] animate-pulse" />
+                          <p className="text-xs font-mono uppercase tracking-wider text-[#00BFFF] font-semibold">
+                            DIRECT_CHANNELS_&_SOCIALS
+                          </p>
+                        </div>
+                        <SocialCardsGrid />
                       </div>
                     </div>
                   </div>
@@ -1117,7 +1131,7 @@ const Contact = () => {
       </div>
 
       {/* Add CSS for animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes slideDown {
           from {
             opacity: 0;
