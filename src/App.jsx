@@ -3,11 +3,21 @@ import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, Stars
 import ErrorBoundary from "./components/ErrorBoundary";
 import { SocialIconsBar } from "./components/SocialLinks";
 import { Mail, Code2, Sparkles } from "lucide-react";
-import './assets';
-import { useEffect, useRef } from "react";
+import { issamLogo } from "./assets";
+import { useState, useEffect, useRef } from "react";
 
 const App = () => {
   const footerRef = useRef(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     // Add CSS animations for particles
@@ -157,17 +167,10 @@ const App = () => {
           </div>
 
           {/* Contact section */}
-          <div className='relative min-h-screen'>
-            {/* Simple black hole in center */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-black via-gray-900/30 to-black rounded-full blur-2xl" />
-            
-            {/* Rings around black hole */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-blue-500/10 rounded-full" />
-            
-            <div className="relative">
+          <div className='relative z-0 min-h-screen overflow-hidden'>
+            <StarsCanvas />
+            <div className='relative z-10'>
               <Contact />
-              <StarsCanvas />
             </div>
           </div>
 
@@ -227,16 +230,20 @@ const App = () => {
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00BFFF] via-cyan-500 to-blue-600 flex items-center justify-center shadow-xl shadow-[#00BFFF]/20">
-                        <span className="text-white font-bold text-2xl">I</span>
+                      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#00BFFF]/70 shadow-xl shadow-[#00BFFF]/20 bg-black/60">
+                        <img
+                          src={issamLogo}
+                          alt="Issam Badaoui"
+                          className="w-full h-full object-cover object-center"
+                        />
                       </div>
-                      <div className="absolute -inset-2 rounded-full border border-[#00BFFF]/30 animate-ping" />
+                      <div className="absolute -inset-1.5 rounded-full border border-[#00BFFF]/30 animate-pulse" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-2xl">Issam</h3>
+                      <h3 className="text-white font-bold text-2xl">Issam Badaoui</h3>
                       <div className="inline-flex items-center gap-2 mt-1 px-3 py-1 bg-gradient-to-r from-[#00BFFF]/10 to-cyan-500/10 rounded-full border border-[#00BFFF]/20">
                         <span className="w-2 h-2 bg-[#00BFFF] rounded-full animate-pulse" />
-                        <span className="text-[#00BFFF] text-sm font-medium">Full Stack Dev</span>
+                        <span className="text-[#00BFFF] text-sm font-medium">Full Stack Web Developer</span>
                       </div>
                     </div>
                   </div>
@@ -342,9 +349,9 @@ const App = () => {
                     <span className="text-emerald-400 text-xs font-mono uppercase tracking-wider">AVAILABLE_FOR_NEW_PROJECTS</span>
                   </div>
                   <p className="text-gray-400 text-sm">
-                    © {new Date().getFullYear()} Badaoui Issam Eddine
+                    © {new Date().getFullYear()} Issam Badaoui
                     <span className="text-gray-600 mx-2">•</span>
-                    Software Engineer &amp; 3D Designer
+                    Full-Stack Web Developer &amp; Software Engineer
                   </p>
                 </div>
 
@@ -363,14 +370,16 @@ const App = () => {
                 </a>
               </div>
 
-              {/* Back to top button */}
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-8 right-8 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#00BFFF] to-cyan-500 flex items-center justify-center text-black font-bold shadow-2xl hover:scale-110 hover:shadow-[0_0_25px_#00BFFF] transition-all duration-300 z-50 group"
-                aria-label="Back to top"
-              >
-                <span className="group-hover:-translate-y-0.5 transition-transform text-lg">↑</span>
-              </button>
+              {/* Back to top button - only shown when scrolled down */}
+              {showBackToTop && (
+                <button
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#00BFFF] to-cyan-500 flex items-center justify-center text-black font-bold shadow-2xl hover:scale-110 active:scale-95 hover:shadow-[0_0_25px_#00BFFF] transition-all duration-300 z-50 group touch-manipulation"
+                  aria-label="Back to top"
+                >
+                  <span className="group-hover:-translate-y-0.5 transition-transform text-base sm:text-lg">↑</span>
+                </button>
+              )}
 
               {/* Footer note */}
               <div className="mt-10 pt-6 border-t border-gray-800/30 text-center">

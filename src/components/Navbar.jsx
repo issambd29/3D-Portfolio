@@ -2,19 +2,30 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { menu, close } from "../assets";
+import { menu, close, issamLogo } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const scrollToSection = (id) => {
@@ -50,7 +61,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 overflow-x-clip ${
           scrolled 
             ? "backdrop-blur-xl bg-primary/90 border-b border-secondary/20 shadow-card py-3" 
             : "bg-primary/60 backdrop-blur-md py-4"
@@ -61,13 +72,13 @@ const Navbar = () => {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00BFFF] to-transparent"
+          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00BFFF] to-transparent pointer-events-none"
         />
 
         <div className={`${styles.paddingX} max-w-7xl mx-auto`}>
           <div className="flex justify-between items-center">
             
-            {/* Logo with cyber style */}
+            {/* Logo with developer photo avatar */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -78,78 +89,84 @@ const Navbar = () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              {/* Animated gradient logo */}
+              {/* Photo Avatar Logo */}
               <motion.div 
-                className="relative w-10 h-10"
+                className="relative w-11 h-11"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00BFFF] to-[#0080FF] rounded-full blur opacity-60 group-hover:opacity-80 transition-opacity" />
-                <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-[#00BFFF]/20 to-transparent border border-[#00BFFF]/30 flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-white font-bold text-lg tracking-tighter">IS</span>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00BFFF] to-[#0080FF] rounded-full blur opacity-70 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-[#00BFFF]/70 shadow-[0_0_12px_rgba(0,191,255,0.4)] bg-black/60">
+                  <img
+                    src={issamLogo}
+                    alt="Issam Badaoui"
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
               </motion.div>
               
               {/* Name with glow effect */}
               <div className="flex flex-col">
-                <h1 className="text-white font-bold text-xl tracking-wider drop-shadow-[0_0_10px_rgba(0,191,255,0.5)]">
+                <h1 className="text-white font-bold text-lg sm:text-xl tracking-wider drop-shadow-[0_0_10px_rgba(0,191,255,0.5)]">
                   Issam
                 </h1>
-                <p className="text-secondary text-xs font-medium tracking-widest">
-                  FULL STACK DEV
+                <p className="text-secondary text-[10px] sm:text-xs font-mono font-medium tracking-widest uppercase">
+                  Full Stack Web Dev
                 </p>
               </div>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="hidden md:flex items-center gap-6"
-            >
-              {navLinks.map((link) => (
-                <motion.button
-                  key={link.id}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setActive(link.title);
-                    scrollToSection(link.id);
-                  }}
-                  className="relative px-1 py-2"
-                >
-                  {/* Active indicator */}
-                  {active === link.title && (
-                    <motion.div
-                      layoutId="navActive"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00BFFF] to-[#0080FF] rounded-full shadow-lg shadow-[#00BFFF]/50"
-                    />
-                  )}
-                  
-                  <span className={`text-sm font-medium tracking-wider transition-all duration-300 ${
-                    active === link.title
-                      ? "text-white drop-shadow-[0_0_8px_rgba(0,191,255,0.8)]"
-                      : "text-secondary hover:text-white hover:drop-shadow-[0_0_5px_rgba(0,191,255,0.5)]"
-                  }`}>
-                    {link.title}
-                  </span>
-                </motion.button>
-              ))}
-              
-              {/* Download CV Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleDownloadCV}
-                className="ml-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-sm font-semibold tracking-wider shadow-lg shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 border border-emerald-500/30 flex items-center gap-2 group"
+            {/* Desktop Navigation - Only mounted when not mobile */}
+            {!isMobile && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+                className="hidden md:flex items-center gap-6"
               >
-                <svg className="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Download CV</span>
-              </motion.button>
-            </motion.div>
+                {navLinks.map((link) => (
+                  <motion.button
+                    key={link.id}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setActive(link.title);
+                      scrollToSection(link.id);
+                    }}
+                    className="relative px-1 py-2"
+                  >
+                    {/* Active indicator */}
+                    {active === link.title && (
+                      <motion.div
+                        layoutId="navActive"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00BFFF] to-[#0080FF] rounded-full shadow-lg shadow-[#00BFFF]/50"
+                      />
+                    )}
+                    
+                    <span className={`text-sm font-medium tracking-wider transition-all duration-300 ${
+                      active === link.title
+                        ? "text-white drop-shadow-[0_0_8px_rgba(0,191,255,0.8)]"
+                        : "text-secondary hover:text-white hover:drop-shadow-[0_0_5px_rgba(0,191,255,0.5)]"
+                    }`}>
+                      {link.title}
+                    </span>
+                  </motion.button>
+                ))}
+                
+                {/* Download CV Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleDownloadCV}
+                  className="ml-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-sm font-semibold tracking-wider shadow-lg shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 border border-emerald-500/30 flex items-center gap-2 group"
+                >
+                  <svg className="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Download CV</span>
+                </motion.button>
+              </motion.div>
+            )}
 
             {/* Mobile Menu Button */}
             <motion.button
@@ -202,9 +219,10 @@ const Navbar = () => {
                     whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       setActive(link.title);
+                      setToggle(false);
                       scrollToSection(link.id);
                     }}
-                    className={`text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 ${
+                    className={`text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center gap-3 touch-manipulation min-h-[48px] ${
                       active === link.title
                         ? "bg-gradient-to-r from-[#00BFFF]/30 to-transparent text-white"
                         : "text-secondary hover:text-white hover:bg-white/5"
@@ -225,8 +243,11 @@ const Navbar = () => {
                 <div className="px-6 pt-4 mt-2 border-t border-white/10">
                   <motion.button
                     whileTap={{ scale: 0.98 }}
-                    onClick={handleDownloadCV}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-semibold tracking-wider shadow-lg shadow-emerald-500/40 flex items-center justify-center gap-2"
+                    onClick={() => {
+                      setToggle(false);
+                      handleDownloadCV();
+                    }}
+                    className="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-semibold tracking-wider shadow-lg shadow-emerald-500/40 flex items-center justify-center gap-2 touch-manipulation min-h-[48px]"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

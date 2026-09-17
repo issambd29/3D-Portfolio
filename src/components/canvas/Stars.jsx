@@ -59,12 +59,12 @@ const StarsCanvas = () => {
   if (!canRender) return null;
 
   return (
-    <div className='w-full h-full absolute inset-0 pointer-events-none'>
+    <div className='w-full h-full absolute inset-0 pointer-events-none -z-10 select-none'>
       <ErrorBoundary fallback={null}>
         <Canvas
           camera={{ position: [0, 0, 1] }}
           gl={{ alpha: true, powerPreference: "low-power" }}
-          style={{ width: "100%", height: "100%", backgroundColor: "transparent" }}
+          style={{ width: "100%", height: "100%", backgroundColor: "transparent", pointerEvents: "none" }}
         >
           <Suspense fallback={null}>
             <Stars />

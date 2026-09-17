@@ -27,6 +27,7 @@ import {
   postgresql,
   django,
   ai,
+  cybersecurity,
 } from "../assets";
 import python from "../assets/tech/python.png";
 
@@ -107,9 +108,9 @@ const technologies = [
   {
     name: "Three JS",
     icon: threejs,
-    category: "3D & Creative",
+    category: "Frontend",
     level: "Interactive",
-    description: "3D scenes, shaders, cameras, lighting & WebGL rendering",
+    description: "Interactive web graphics, canvas rendering & visual animations",
   },
   {
     name: "JavaScript",
@@ -117,13 +118,6 @@ const technologies = [
     category: "Frontend",
     level: "Advanced",
     description: "ES6+, async/await, DOM algorithms & modern tooling",
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-    category: "Frontend",
-    level: "Proficient",
-    description: "Type-safe interfaces, generics & scalable codebases",
   },
   {
     name: "Node JS",
@@ -135,7 +129,7 @@ const technologies = [
   {
     name: "Figma",
     icon: figma,
-    category: "3D & Creative",
+    category: "Design",
     level: "Advanced",
     description: "UI/UX prototypes, wireframes, design systems & handoffs",
   },
@@ -145,20 +139,6 @@ const technologies = [
     category: "Tools",
     level: "Advanced",
     description: "Version control, branching workflows & GitHub CI/CD",
-  },
-  {
-    name: "Docker",
-    icon: docker,
-    category: "Tools",
-    level: "Proficient",
-    description: "Containerization, environments & production deployment",
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-    category: "Database",
-    level: "Proficient",
-    description: "NoSQL document storage, indexing & schema designs",
   },
   {
     name: "HTML 5",
@@ -178,16 +158,27 @@ const technologies = [
 
 const experiences = [
   {
+    title: "CTF Player & Aspiring Penetration Tester",
+    company_name: "TryHackMe & OverTheWire (Natas)",
+    icon: cybersecurity,
+    iconBg: "#0B1528",
+    date: "Sep 2026 - Present",
+    points: [
+      "Commenced dedicated cybersecurity training and CTF journey targeting web application penetration testing and offensive security.",
+      "Solving security war-games on OverTheWire (Natas), exploiting server-side vulnerabilities including command injection, path traversal, SQLi, and authentication flaws.",
+      "Tackling hands-on offensive security rooms on TryHackMe, mastering network enumeration, Linux privilege escalation, and reconnaissance.",
+      "Combining software engineering foundations with ethical hacking to identify attack vectors, audit application source code, and remediate vulnerabilities.",
+    ],
+  },
+  {
     title: "Full-Stack Engineer & React Specialist",
     company_name: "Snai3i",
     icon: reactjs,
     iconBg: "#0F172A",
     date: "Sep 2025 - Present",
     points: [
-      "Engineering core production features for Snai3i enterprise platforms using React, Vite, and Tailwind CSS.",
-      "Architecting reusable component libraries, global state management, and real-time data visualizers.",
-      "Implementing end-to-end responsive UI systems with strict cross-browser and mobile device compatibility.",
-      "Conducting code reviews, performance audits, and continuous integration workflows to ensure 99.9% uptime."
+      "Engineered responsive React and Tailwind frontend for Snai3i enterprise client portal.",
+      "Built state management, customer loyalty workflows, and real-time data views.",
     ],
   },
   {
@@ -197,10 +188,8 @@ const experiences = [
     iconBg: "#0F172A",
     date: "Sep 2025 - Present",
     points: [
-      "Architecting secure RESTful API endpoints and database schemas for the Snai3i Point Tracker ecosystem.",
-      "Writing optimized PostgreSQL queries, relational models, and transaction management in Django ORM.",
-      "Implementing role-based authentication (RBAC), JWT sessions, and rate-limiting security layers.",
-      "Deploying scalable cloud backend services on Render with production logging and performance monitoring."
+      "Architected RESTful APIs, relational models, and migrations in Django for Snai3i Point Tracker.",
+      "Implemented secure JWT authentication and query optimizations in PostgreSQL on Render.",
     ],
   },
   {
@@ -210,10 +199,8 @@ const experiences = [
     iconBg: "#0F172A",
     date: "Sep 2025 - Present",
     points: [
-      "Designing and engineering the complete digital school platform for Madrassat El-Itqane Quranic School.",
-      "Translating user journey maps in Figma into high-performance React and Tailwind interfaces.",
-      "Integrating Firebase Authentication and Cloud Firestore for live student curriculum and progress tracking.",
-      "Ensuring accessibility, multilingual typography support, and fluid mobile experience across smartphones and tablets."
+      "Designed and deployed the full digital portal for Madrassat El-Itqane Quranic School.",
+      "Integrated Firebase Authentication and Firestore database for student tracking and curriculum.",
     ],
   },
   {
@@ -223,10 +210,8 @@ const experiences = [
     iconBg: "#0F172A",
     date: "Sep 2025 - Dec 2025",
     points: [
-      "Developed high-performance cross-platform mobile apps for Android and iOS using React Native and Expo.",
-      "Constructed custom navigation stacks, offline data caching, and native device feature integrations.",
-      "Engineered adaptive mobile interfaces tested on diverse screen aspect ratios and hardware profiles.",
-      "Optimized memory footprint and rendered frame rates for 60fps fluid touch interactions."
+      "Built fluid cross-platform iOS and Android applications using React Native and Expo.",
+      "Delivered offline caching, smooth mobile navigation, and responsive touch UI.",
     ],
   },
   {
@@ -236,10 +221,8 @@ const experiences = [
     iconBg: "#0F172A",
     date: "Sep 2024 - Sep 2025",
     points: [
-      "Constructed modern responsive user interfaces using HTML5, CSS3, modern JavaScript, and design systems.",
-      "Converted high-fidelity mockups into pixel-perfect, accessible, and fast-loading web pages.",
-      "Conducted extensive cross-browser compatibility testing and web performance optimizations.",
-      "Established foundational frontend architecture and modular CSS standards across early company projects."
+      "Developed high-performance web pages and modular CSS components with modern JavaScript.",
+      "Ensured pixel-perfect responsiveness across mobile, tablet, and desktop screens.",
     ],
   },
 ];
@@ -247,7 +230,7 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "Issam delivered the Snai3i Point Tracker platform with outstanding precision. From the React UI to the Django and PostgreSQL backend, his technical acumen and attention to detail elevated our company's workflow.",
+      "Issam delivered the Snai3i Point Tracker platform with outstanding precision. Clean React UI, solid Django backend, and on-time delivery.",
     name: "Snai3i Project Lead",
     designation: "Executive Director",
     company: "Snai3i Enterprise",
@@ -255,7 +238,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "Working with Issam on Madrassat El-Itqane school platform was a game changer. The interface is intuitive, beautiful, and runs flawlessly on mobile devices for all our teachers and students.",
+      "The Madrassat El-Itqane platform is fast, clean, and runs seamlessly on mobile devices for our teachers and students.",
     name: "Administration Lead",
     designation: "Head of Operations",
     company: "Madrassat El-Itqane",
@@ -263,7 +246,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "Issam combines real software engineering depth with 3D creativity and refined aesthetic instinct. His code is clean, robust, and delivered with true professional composure.",
+      "Issam writes clean, maintainable code, respects timelines, and communicates directly. Highly dependable engineer.",
     name: "Senior Tech Consultant",
     designation: "Software Architect",
     company: "DevSolutions",
@@ -304,6 +287,22 @@ const projects = [
     live_demo_link: "https://madrassat-elitqane.web.app",
     type: "react",
     badge: "Official School Platform",
+  },
+  {
+    name: "El-Itqane School Manager",
+    description: "Cloud inventory & logistics management platform (نظام إدارة المخزون والمخيم) engineered for Madrassat El-Itqane. Features Firebase authentication, real-time stock itemization, quantity auditing, and responsive Arabic RTL dashboard.",
+    tags: [
+      { name: "javascript", color: "blue-text-gradient" },
+      { name: "firebase", color: "orange-text-gradient" },
+      { name: "inventory", color: "green-text-gradient" },
+      { name: "management", color: "purple-text-gradient" },
+      { name: "arabic-rtl", color: "cyan-text-gradient" },
+    ],
+    image: null,
+    source_code_link: "https://github.com/issambd29",
+    live_demo_link: "https://elitqane-manager.web.app",
+    type: "react",
+    badge: "Official School ERP",
   },
 
   // HTML/CSS/JS Projects
@@ -354,13 +353,13 @@ const projects = [
   },
   {
     name: "Personal Portfolio",
-    description: "Portfolio of Issam Badaoui — Creative Front-End Developer, UI/UX Designer, and 3D Designer from Algeria, featuring modern responsive design and 3D interactions.",
+    description: "Portfolio of Issam Badaoui — Full-Stack Web Developer, UI/UX Designer, and Software Engineer from Algeria, featuring responsive design and modern web interfaces.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "css", color: "blue-text-gradient" },
       { name: "javascript", color: "blue-text-gradient" },
-      { name: "spline-3d", color: "blue-text-gradient" },
       { name: "portfolio", color: "blue-text-gradient" },
+      { name: "web-dev", color: "blue-text-gradient" },
     ],
     image: null,
     source_code_link: "https://github.com/issambd29/portfolio-html",
@@ -397,21 +396,6 @@ const projects = [
     image: null,
     source_code_link: "https://github.com/issambd29/arabic-platform",
     live_demo_link: "https://arabe-projet.web.app",
-    type: "react"
-  },
-  {
-    name: "Quiz BD App",
-    description: "Interactive quiz platform featuring user authentication, category exploration, custom quiz creation and editing, timed test sessions, and instant score results.",
-    tags: [
-      { name: "vue", color: "cyan-text-gradient" },
-      { name: "api", color: "cyan-text-gradient" },
-      { name: "quiz", color: "cyan-text-gradient" },
-      { name: "gamification", color: "cyan-text-gradient" },
-      { name: "real-time", color: "cyan-text-gradient" },
-    ],
-    image: null,
-    source_code_link: "https://github.com/issambd29/quiz-bd",
-    live_demo_link: "https://quiz-bd.vercel.app",
     type: "react"
   },
 

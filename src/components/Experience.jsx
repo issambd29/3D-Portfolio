@@ -156,10 +156,10 @@ const Experience = () => {
         </div>
         
         <h2 className={`${styles.sectionHeadText} text-center text-white mb-4`}>
-          My <span className="text-[#00BFFF]">Journey</span>
+          Work <span className="text-[#00BFFF]">Experience</span>
         </h2>
-        <p className={`${styles.sectionSubText} text-center text-gray-400 max-w-3xl mx-auto`}>
-          From foundational web technologies to modern frameworks, here's a timeline of my development journey
+        <p className="text-center text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+          Production roles, client delivery, and full-stack software milestones.
         </p>
       </motion.div>
 

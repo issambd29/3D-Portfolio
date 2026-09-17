@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Globe, Smartphone, Server, Palette, CheckCircle2 } from "lucide-react";
+import { Globe, Smartphone, Server, Palette } from "lucide-react";
 import { styles } from "../styles";
 
 const roles = [
@@ -9,36 +9,29 @@ const roles = [
     icon: Globe,
     description:
       "Engineering modern, scalable web platforms with React, Vite, Tailwind CSS, and robust state architectures.",
-    badge: "React • TypeScript • Tailwind",
+    badge: "React • JavaScript • Tailwind",
+  },
+  {
+    title: "Backend & API Architect",
+    icon: Server,
+    description:
+      "Building high-throughput REST APIs, JWT authentication, and relational schemas with Django, Python, and PostgreSQL.",
+    badge: "Django • Python • PostgreSQL",
   },
   {
     title: "Mobile App Developer",
     icon: Smartphone,
     description:
       "Developing fluid cross-platform mobile applications for Android & iOS with React Native and responsive touch layouts.",
-    badge: "React Native • Expo • Mobile UI",
+    badge: "React Native • Mobile UI",
   },
   {
-    title: "Backend & Database Architect",
-    icon: Server,
-    description:
-      "Building high-throughput REST APIs, JWT authentication, and relational schemas with Django, Python, and PostgreSQL.",
-    badge: "Django • PostgreSQL • REST APIs",
-  },
-  {
-    title: "UI/UX & 3D Interactive Designer",
+    title: "UI/UX & Frontend Design",
     icon: Palette,
     description:
-      "Crafting immersive visual user interfaces, design systems, and WebGL Three.js interactive scenes.",
-    badge: "Figma • Three.js • Spline 3D",
+      "Crafting intuitive user interfaces, design systems, wireframes, and responsive component architectures with Figma and modern CSS.",
+    badge: "Figma • UI/UX Systems",
   },
-];
-
-const highlights = [
-  "Production experience deploying enterprise applications (Snai3i, Madrassat El-Itqane)",
-  "Full lifecycle expertise: Figma design -> Frontend -> REST APIs -> Cloud Database",
-  "High performance and mobile-first responsive architecture",
-  "Real-time integrations, authentication protocols, and clean code principles",
 ];
 
 const About = () => {
@@ -74,7 +67,7 @@ const About = () => {
             </h2>
 
             <p className="mt-4 text-gray-200 text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed backdrop-blur-md bg-gradient-to-r from-white/5 to-white/0 rounded-2xl p-5 sm:p-6 border border-white/10">
-              I am a versatile software engineer with proven experience constructing end-to-end digital platforms. From responsive React frontends and cross-platform mobile apps to scalable Python, Django backends, and PostgreSQL databases, I design and deploy reliable systems tailored to real company needs and user expectations.
+              Full-stack software engineer building high-performance web applications, Django &amp; PostgreSQL backends, and cross-platform mobile apps. Focused on clean architecture, reliability, and real-world results.
             </p>
           </div>
         </motion.div>
@@ -119,30 +112,6 @@ const About = () => {
             );
           })}
         </div>
-
-        {/* Enterprise Highlights Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="rounded-2xl backdrop-blur-md bg-gradient-to-r from-blue-950/40 via-black/50 to-purple-950/30 border border-[#00BFFF]/20 p-6 sm:p-8"
-        >
-          <h4 className="text-white text-base sm:text-lg font-semibold mb-4 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#00BFFF]" />
-            Core Engineering Standard
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {highlights.map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00BFFF] flex-shrink-0 mt-0.5" />
-                <span className="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

@@ -207,7 +207,7 @@ const ProjectCard = React.forwardRef(
                 <button
                   type="button"
                   onClick={handleLiveDemoClick}
-                  className="flex-1 py-2.5 px-3 text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 bg-[#00BFFF]/15 hover:bg-[#00BFFF] text-[#00BFFF] hover:text-black border border-[#00BFFF]/40 hover:border-[#00BFFF] shadow-md group/btn"
+                  className="flex-1 py-2.5 px-3 min-h-[44px] text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-1.5 bg-[#00BFFF]/15 hover:bg-[#00BFFF] active:scale-95 text-[#00BFFF] hover:text-black border border-[#00BFFF]/40 hover:border-[#00BFFF] shadow-md group/btn touch-manipulation"
                 >
                   <span>Live App</span>
                   <span className="text-xs transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
@@ -215,7 +215,7 @@ const ProjectCard = React.forwardRef(
                   </span>
                 </button>
               ) : (
-                <div className="flex-1 py-2.5 px-3 text-xs font-mono rounded-xl flex items-center justify-center bg-white/5 border border-white/10 text-gray-500 cursor-not-allowed">
+                <div className="flex-1 py-2.5 px-3 min-h-[44px] text-xs font-mono rounded-xl flex items-center justify-center bg-white/5 border border-white/10 text-gray-500 cursor-not-allowed">
                   <span>Demo Staged</span>
                 </div>
               )}
@@ -224,7 +224,7 @@ const ProjectCard = React.forwardRef(
                 type="button"
                 onClick={handleSourceCodeClick}
                 disabled={!source_code_link || source_code_link === "#"}
-                className={`py-2.5 px-3.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1.5 border ${
+                className={`py-2.5 px-3.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 flex items-center justify-center gap-1.5 border touch-manipulation active:scale-95 ${
                   source_code_link && source_code_link !== "#"
                     ? "bg-white/5 hover:bg-white/15 border-white/10 hover:border-white/30 text-gray-200 hover:text-white"
                     : "bg-white/5 border-white/5 text-gray-500 cursor-not-allowed"
@@ -310,7 +310,7 @@ const Works = () => {
             <button
               key={category.value}
               onClick={() => setActiveFilter(category.value)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 flex items-center gap-2 border ${
+              className={`px-3.5 sm:px-4 py-2 min-h-[42px] rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 flex items-center gap-2 border touch-manipulation active:scale-95 ${
                 isActive
                   ? "bg-[#00BFFF]/20 text-white border-[#00BFFF] shadow-[0_0_15px_rgba(0,191,255,0.3)] scale-105"
                   : "bg-white/5 text-gray-400 border-white/10 hover:border-[#00BFFF]/40 hover:text-white"

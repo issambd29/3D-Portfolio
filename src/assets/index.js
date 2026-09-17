@@ -23,6 +23,7 @@ import threejs from "./tech/threejs.svg";
 import postgresql from "./tech/postgresql.svg";
 import django from "./tech/django.svg";
 import ai from "./tech/ai.svg";
+import cybersecurity from "./tech/cybersecurity.svg";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -32,9 +33,11 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import issamLogo from "./issam-logo.jpg";
 
 export {
   logo,
+  issamLogo,
   backend,
   creator,
   mobile,
@@ -58,6 +61,7 @@ export {
   postgresql,
   django,
   ai,
+  cybersecurity,
   meta,
   shopify,
   starbucks,
