@@ -45,7 +45,7 @@ const App = () => {
     <ErrorBoundary>
       <BrowserRouter>
         {/* Deep black space background */}
-        <div className='relative z-0 bg-black min-h-screen text-white'>
+        <div className='relative z-0 bg-black min-h-screen text-white overflow-x-hidden w-full'>
           
           {/* Fixed space background */}
           <div className="fixed inset-0 overflow-hidden bg-black z-0 pointer-events-none">
@@ -85,9 +85,9 @@ const App = () => {
         </div>
         
         {/* App content */}
-        <div className="relative z-10">
+        <div className="relative z-10 w-full overflow-x-hidden">
           {/* Main header section */}
-          <div className='relative min-h-screen'>
+          <div className='relative lg:min-h-screen w-full overflow-x-hidden'>
             {/* Galaxy center effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 blur-2xl rounded-full" />
             

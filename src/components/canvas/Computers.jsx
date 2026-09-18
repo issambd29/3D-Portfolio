@@ -3,7 +3,53 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
-const Computers = ({ isMobile }) => {
+// Helper to determine fine-tuned responsive 3D model scale and position
+// Keeps the workstation close to the hero paragraph while adapting to phone, tablet, laptop, and desktop
+export const getDeviceProfile = (width) => {
+  if (width < 640) {
+    // Phone: Prominent workstation shifted clearly to the right
+    if (width <= 375) {
+      return {
+        device: "phone-sm",
+        scale: 0.72,
+        position: [0.55, -0.52, -0.1],
+        rotation: [-0.01, -0.2, -0.1],
+      };
+    }
+    if (width <= 480) {
+      return {
+        device: "phone",
+        scale: 0.78,
+        position: [0.62, -0.55, -0.1],
+        rotation: [-0.01, -0.2, -0.1],
+      };
+    }
+    return {
+      device: "phone-lg",
+      scale: 0.82,
+      position: [0.68, -0.58, -0.1],
+      rotation: [-0.01, -0.2, -0.1],
+    };
+  }
+  // Tablet: Optically balanced horizontally
+  if (width < 1024) {
+    return {
+      device: "tablet",
+      scale: 0.72,
+      position: [0.25, -0.7, -0.2],
+      rotation: [-0.01, -0.2, -0.1],
+    };
+  }
+  // PC / Desktop screen - Shifted more to the right as requested
+  return {
+    device: "desktop",
+    scale: 0.75,
+    position: [0.65, -3.25, -1.5],
+    rotation: [-0.01, -0.2, -0.1],
+  };
+};
+
+const Computers = ({ scale, position, rotation }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
@@ -21,36 +67,28 @@ const Computers = ({ isMobile }) => {
       />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.38 : 0.65}
-        position={isMobile ? [-0.2, -2.85, -2.3] : [0, -3.5, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        scale={scale}
+        position={position}
+        rotation={rotation}
       />
     </mesh>
   );
 };
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [profile, setProfile] = useState(() =>
+    typeof window !== "undefined"
+      ? getDeviceProfile(window.innerWidth)
+      : getDeviceProfile(1200)
+  );
 
   useEffect(() => {
-    // Add a listener for changes to the screen size (matching <= 768px breakpoint)
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const handleResize = () => {
+      setProfile(getDeviceProfile(window.innerWidth));
     };
 
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -77,7 +115,11 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Computers isMobile={isMobile} />
+        <Computers
+          scale={profile.scale}
+          position={profile.position}
+          rotation={profile.rotation}
+        />
       </Suspense>
 
       <Preload all />
