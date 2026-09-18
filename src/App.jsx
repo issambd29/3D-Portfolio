@@ -1,14 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas, LoadingScreen } from "./components";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { SocialIconsBar } from "./components/SocialLinks";
 import { Mail, Code2, Sparkles } from "lucide-react";
 import { issamLogo } from "./assets";
 import { useState, useEffect, useRef } from "react";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const footerRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +45,12 @@ const App = () => {
 
   return (
     <ErrorBoundary>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
       <BrowserRouter>
         {/* Deep black space background */}
         <div className='relative z-0 bg-black min-h-screen text-white overflow-x-hidden w-full'>

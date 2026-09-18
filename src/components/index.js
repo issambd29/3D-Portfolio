@@ -9,6 +9,8 @@ import Contact from "./Contact";
 
 import { StarsCanvas } from "./canvas";
 
+import LoadingScreen from "./LoadingScreen";
+
 export {
   Navbar,
   Hero,
@@ -19,4 +21,5 @@ export {
   Feedbacks,
   Contact,
   StarsCanvas,
+  LoadingScreen,
 };
