@@ -10,7 +10,23 @@ import { AnimatePresence } from "framer-motion";
 const App = () => {
   const footerRef = useRef(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  
+  // Detect if client is a search engine bot / crawler or already loaded in current session
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window === "undefined" || typeof navigator === "undefined") return false;
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless/i.test(navigator.userAgent);
+    if (isBot) return false;
+    // Check if session has already seen intro
+    const hasSeenIntro = sessionStorage.getItem("intro_viewed");
+    return !hasSeenIntro;
+  });
+
+  const handleLoadingComplete = () => {
+    try {
+      sessionStorage.setItem("intro_viewed", "true");
+    } catch (_) {}
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +63,7 @@ const App = () => {
     <ErrorBoundary>
       <AnimatePresence mode="wait">
         {isLoading && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
+          <LoadingScreen onComplete={handleLoadingComplete} />
         )}
       </AnimatePresence>
 
@@ -242,6 +258,11 @@ const App = () => {
                         <img
                           src={issamLogo}
                           alt="Issam Badaoui"
+                          onError={(e) => {
+                            if (e.target.src !== `${window.location.origin}/issam_logo.jpg`) {
+                              e.target.src = "/issam_logo.jpg";
+                            }
+                          }}
                           className="w-full h-full object-cover object-center"
                         />
                       </div>

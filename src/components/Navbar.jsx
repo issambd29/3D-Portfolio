@@ -124,6 +124,12 @@ const Navbar = () => {
                   <img
                     src={issamLogo}
                     alt="Issam Badaoui"
+                    onError={(e) => {
+                      // Fallback gracefully to public image paths if bundle path fails
+                      if (e.target.src !== `${window.location.origin}/issam_logo.jpg`) {
+                        e.target.src = "/issam_logo.jpg";
+                      }
+                    }}
                     className="w-full h-full object-cover object-center"
                   />
                 </div>

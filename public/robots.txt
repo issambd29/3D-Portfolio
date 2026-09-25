@@ -1,0 +1,16 @@
+# Robots.txt for Issam Badaoui Portfolio
+# Allow all search engine crawlers (Google, Bing, Yahoo, Yandex, DuckDuckGo)
+
+User-agent: *
+Allow: /
+Allow: /googleb201081199bb98d2.html
+Allow: /cvissam.pdf
+Allow: /issam_logo.jpg
+Allow: /issam-logo.jpg
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://issam-badaoui.web.app/sitemap.xml
+Sitemap: https://issambd29.github.io/sitemap.xml

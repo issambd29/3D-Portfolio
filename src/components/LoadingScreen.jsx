@@ -14,6 +14,16 @@ const LoadingScreen = ({ onComplete }) => {
   ];
 
   useEffect(() => {
+    // Check if client is a search engine crawler or bot (Googlebot, Bingbot, etc.)
+    const userAgent = typeof navigator !== "undefined" ? navigator.userAgent : "";
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(userAgent);
+
+    if (isBot) {
+      // Instantly finish loading for crawlers
+      if (onComplete) onComplete();
+      return;
+    }
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -117,6 +127,11 @@ const LoadingScreen = ({ onComplete }) => {
             <img
               src={issamLogo}
               alt="Issam Badaoui"
+              onError={(e) => {
+                if (e.target.src !== `${window.location.origin}/issam_logo.jpg`) {
+                  e.target.src = "/issam_logo.jpg";
+                }
+              }}
               className="w-full h-full object-cover"
             />
           </div>
