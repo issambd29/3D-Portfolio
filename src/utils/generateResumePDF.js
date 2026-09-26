@@ -95,7 +95,7 @@ export function generateIssamResumePDF() {
   doc.setTextColor(...textDark);
 
   const summary =
-    "Results-driven Full-Stack Web Developer and Software Engineer with strong expertise in architecting scalable modern web applications (React, Tailwind CSS, Django, PostgreSQL) and cloud backends. Passionate cybersecurity enthusiast and active CTF player (TryHackMe & OverTheWire Natas) dedicated to web application penetration testing, OWASP Top 10 mitigation, and defensive coding. Proven track record delivering enterprise client platforms (Snai3i) and digital academic portals (Madrassat El-Itqane).";
+    "Results-driven Full-Stack Web Developer and Software Engineer with strong expertise in architecting scalable modern web applications (React, Tailwind CSS, Django, PostgreSQL) and cloud backends. Passionate cybersecurity enthusiast and active CTF player (TryHackMe & OverTheWire Natas) dedicated to web application penetration testing, OWASP Top 10 mitigation, and defensive coding. Proven track record delivering enterprise client platforms (Snai3i) and official educational portals (Salhi Platform, Madrassat El-Itqane).";
 
   const splitSummary = doc.splitTextToSize(summary, contentWidth);
   doc.text(splitSummary, leftMargin, y);
@@ -209,6 +209,11 @@ export function generateIssamResumePDF() {
 
   const keyProjects = [
     {
+      name: "Salhi Platform (Official Baccalaureate Educational Platform)",
+      tech: "React, Tailwind CSS, Interactive E-Learning Portal",
+      desc: "Live official educational portal (oustada-salhi.com) for Algerian Baccalaureate Islamic Studies with structured curriculum lessons, exam repositories, and student authentication.",
+    },
+    {
       name: "Snai3i Point Tracker (Enterprise Platform)",
       tech: "React, Tailwind, Django REST, PostgreSQL, Render",
       desc: "Comprehensive customer loyalty and transactional accounting web ecosystem with admin reporting dashboards and tokenized authorization.",
@@ -217,11 +222,6 @@ export function generateIssamResumePDF() {
       name: "El-Itqane Educational Ecosystem & Manager",
       tech: "React, Firebase, Firestore, Tailwind CSS, Arabic RTL",
       desc: "Full-scale educational academic portal & cloud inventory management ERP for students, teachers, and school operations.",
-    },
-    {
-      name: "Interactive 3D Portfolio & Web Experience",
-      tech: "React, Three.js, React Three Fiber, Framer Motion, Tailwind",
-      desc: "Cutting-edge responsive 3D developer showcase with interactive GLTF computer workstations and animated timelines.",
     },
   ];
 
